@@ -10,7 +10,7 @@ import { cx } from '../../lib/utils/format'
 import './product-card.css'
 
 export default function ProductCard({ wallpaper: w, ratio = '4/3', className }) {
-  const { addToCart, inCart, lastAddedId, toggleFavorite, isFavorite } = useStore()
+  const { addToCart, removeFromCart, inCart, lastAddedId, toggleFavorite, isFavorite } = useStore()
   const fav = isFavorite(w.id)
   const added = inCart(w.id)
   const justAdded = lastAddedId === w.id
@@ -37,14 +37,18 @@ export default function ProductCard({ wallpaper: w, ratio = '4/3', className }) 
         </span>
         <button
           className={cx('p-card__add', (added || justAdded) && 'is-added')}
-          data-cursor={added ? undefined : 'Add'}
-          onClick={() => addToCart(w.id)}
+          data-cursor={added ? 'Remove' : 'Add'}
+          onClick={() => (added ? removeFromCart(w.id) : addToCart(w.id))}
           aria-live="polite"
+          aria-label={added ? `Remove ${w.title} from cart` : `Add ${w.title} to cart`}
+          title={added ? 'Remove from cart' : 'Add to cart'}
         >
-          {justAdded ? (
-            <><Icon name="check" size={15} /> Added to cart</>
-          ) : added ? (
-            <><Icon name="check" size={15} /> In your cart</>
+          {added ? (
+            justAdded ? (
+              <><Icon name="check" size={15} /> Added to cart</>
+            ) : (
+              <><Icon name="close" size={15} /> Remove</>
+            )
           ) : (
             <>Add to cart <Icon name="arrowRight" size={15} /></>
           )}

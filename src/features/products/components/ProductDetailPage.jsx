@@ -34,7 +34,7 @@ export default function ProductDetailPage() {
   const { slug } = useParams()
   const navigate = useNavigate()
   const w = getWallpaper(slug)
-  const { addToCart, inCart, toggleFavorite, isFavorite, setCartOpen, catalog } = useStore()
+  const { addToCart, removeFromCart, inCart, toggleFavorite, isFavorite, setCartOpen, catalog } = useStore()
 
   useDocumentMeta(
     w ? `${w.title} — Papier` : 'Wallpaper — Papier',
@@ -139,11 +139,12 @@ export default function ProductDetailPage() {
               <Button
                 variant="primary"
                 size="lg"
-                onClick={() => addToCart(w.id)}
+                onClick={() => (added ? removeFromCart(w.id) : addToCart(w.id))}
                 className={cx(added && 'is-in-cart')}
-                data-cursor={added ? undefined : 'Add'}
+                data-cursor={added ? 'Remove' : 'Add'}
+                aria-label={added ? `Remove ${w.title} from cart` : `Add ${w.title} to cart`}
               >
-                {added ? <><Icon name="check" size={18} /> In your cart</> : <>Add to cart <Icon name="arrowRight" size={18} /></>}
+                {added ? <><Icon name="close" size={18} /> Remove from cart</> : <>Add to cart <Icon name="arrowRight" size={18} /></>}
               </Button>
               <Button variant="ghost" size="lg" onClick={buyNow}>
                 Buy now
@@ -221,11 +222,11 @@ export default function ProductDetailPage() {
         </div>
         <Button
           variant="primary"
-          onClick={() => addToCart(w.id)}
+          onClick={() => (added ? removeFromCart(w.id) : addToCart(w.id))}
           className={cx(added && 'is-in-cart')}
-          aria-label={added ? `${w.title} is in your cart` : `Add ${w.title} to cart`}
+          aria-label={added ? `Remove ${w.title} from cart` : `Add ${w.title} to cart`}
         >
-          {added ? <><Icon name="check" size={16} /> In cart</> : 'Add to cart'}
+          {added ? <><Icon name="close" size={16} /> Remove</> : 'Add to cart'}
         </Button>
       </div>
 
