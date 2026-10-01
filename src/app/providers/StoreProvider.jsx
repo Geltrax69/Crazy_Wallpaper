@@ -26,10 +26,25 @@ export function StoreProvider({ children }) {
   const [orders, setOrders] = useState(() => load('papier-orders', []))
   const [cartOpen, setCartOpen] = useState(false)
   const [lastAddedId, setLastAddedId] = useState(null)
+  const [theme, setTheme] = useState(() => {
+    try {
+      const saved = localStorage.getItem('papier-theme')
+      if (saved === 'light' || saved === 'dark') return saved
+    } catch { /* ignore */ }
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light'
+  })
 
   useEffect(() => save('papier-cart', cartIds), [cartIds])
   useEffect(() => save('papier-favorites', favoriteIds), [favoriteIds])
   useEffect(() => save('papier-orders', orders), [orders])
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+    try {
+      localStorage.setItem('papier-theme', theme)
+    } catch { /* ignore */ }
+  }, [theme])
 
   const cart = useMemo(
     () => cartIds.map(getWallpaper).filter(Boolean),
@@ -77,6 +92,8 @@ export function StoreProvider({ children }) {
     inCart: (id) => cartIds.includes(id),
     orders, placeOrder,
     catalog: WALLPAPERS,
+    theme,
+    toggleTheme: () => setTheme((t) => (t === 'dark' ? 'light' : 'dark')),
   }
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>

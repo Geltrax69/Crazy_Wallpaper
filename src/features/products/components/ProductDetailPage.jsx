@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useStore } from '../../../app/providers/StoreProvider'
 import { useDocumentMeta, useJsonLd } from '../../../app/routes/useDocumentMeta'
@@ -10,16 +11,21 @@ import Button from '../../../components/ui/Button'
 import Price from '../../../components/ui/Price'
 import Badge from '../../../components/ui/Badge'
 import Icon from '../../../components/ui/Icon'
+import SmartImage from '../../../components/ui/SmartImage'
 import Reveal from '../../../components/animation/Reveal'
 import NotFoundPage from '../../notfound/components/NotFoundPage'
 import { cx } from '../../../lib/utils/format'
 import '../product.css'
 
-function SpecRow({ label, children }) {
+function SpecTags({ label, items }) {
   return (
     <div className="spec-row">
       <Caption style={{ color: 'var(--muted)' }}>{label}</Caption>
-      <BodySm>{children}</BodySm>
+      <div className="tag-row">
+        {items.map((t) => (
+          <span key={t} className="tag">{t}</span>
+        ))}
+      </div>
     </div>
   )
 }
@@ -55,14 +61,29 @@ export default function ProductDetailPage() {
   const collection = getCollection(w.collection)
   const added = inCart(w.id)
   const fav = isFavorite(w.id)
+  const [lightbox, setLightbox] = useState(false)
   const related = catalog
     .filter((x) => x.id !== w.id && (x.collection === w.collection || x.category === w.category))
     .slice(0, 3)
+
+  useEffect(() => {
+    if (!lightbox) return
+    const onKey = (e) => { if (e.key === 'Escape') setLightbox(false) }
+    window.addEventListener('keydown', onKey)
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      document.body.style.overflow = prev
+    }
+  }, [lightbox])
 
   function buyNow() {
     if (!added) addToCart(w.id)
     navigate('/checkout')
   }
+
+  const sameName = category?.name && category.name === collection?.name
 
   return (
     <div className="container">
@@ -80,9 +101,18 @@ export default function ProductDetailPage() {
 
       <div className="product-layout">
         <Reveal className="product-media">
-          <div data-cursor="View">
-            <img src={w.preview} alt={w.title} />
-          </div>
+          <button
+            type="button"
+            className="product-media__frame"
+            onClick={() => setLightbox(true)}
+            aria-label={`View ${w.title} fullscreen`}
+            data-cursor="Zoom"
+          >
+            <SmartImage src={w.preview} alt={w.title} eager />
+            <span className="product-media__zoom" aria-hidden="true">
+              <Icon name="plus" size={14} /> Fullscreen
+            </span>
+          </button>
           <div className="product-media__badges">
             {w.isNew && <Badge tone="ink">New</Badge>}
             <Badge>8K included</Badge>
@@ -92,7 +122,11 @@ export default function ProductDetailPage() {
         <div className="product-info">
           <Reveal>
             <Meta style={{ color: 'var(--muted)' }}>
-              {category?.name} · <Link to={`/collections/${collection.slug}`} className="u-link">{collection?.name}</Link>
+              {sameName ? (
+                <Link to={`/collections/${collection.slug}`} className="u-link">{collection?.name}</Link>
+              ) : (
+                <>{category?.name} · <Link to={`/collections/${collection.slug}`} className="u-link">{collection?.name}</Link></>
+              )}
             </Meta>
             <H1 as="h1" className="product-title">{w.title}</H1>
             <div className="product-price-row">
@@ -132,13 +166,13 @@ export default function ProductDetailPage() {
 
           <Reveal delay={120}>
             <div className="spec-list">
-              <SpecRow label="Resolutions">{w.resolutions.join(' · ')}</SpecRow>
-              <SpecRow label="Aspect ratios">{w.aspectRatios.join(' · ')}</SpecRow>
-              <SpecRow label="Devices">{w.supportedDevices.join(' · ')}</SpecRow>
-              <SpecRow label="Formats">{w.fileFormats.join(' · ')}</SpecRow>
-              <SpecRow label="License">
-                <Link to="/license" className="u-link">Personal & commercial use</Link>
-              </SpecRow>
+              <SpecTags label="Aspect ratios" items={w.aspectRatios} />
+              <SpecTags label="Devices" items={w.supportedDevices} />
+              <SpecTags label="Formats" items={w.fileFormats} />
+              <div className="spec-row">
+                <Caption style={{ color: 'var(--muted)' }}>License</Caption>
+                <BodySm><Link to="/license" className="u-link">Personal & commercial use</Link></BodySm>
+              </div>
             </div>
           </Reveal>
 
@@ -178,6 +212,42 @@ export default function ProductDetailPage() {
             ))}
           </div>
         </section>
+      )}
+
+      <div className="buy-bar">
+        <div className="buy-bar__meta">
+          <BodySm className="buy-bar__title">{w.title}</BodySm>
+          <Price value={w.price} />
+        </div>
+        <Button
+          variant="primary"
+          onClick={() => addToCart(w.id)}
+          className={cx(added && 'is-in-cart')}
+          aria-label={added ? `${w.title} is in your cart` : `Add ${w.title} to cart`}
+        >
+          {added ? <><Icon name="check" size={16} /> In cart</> : 'Add to cart'}
+        </Button>
+      </div>
+
+      {lightbox && (
+        <div
+          className="lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${w.title}, fullscreen view`}
+          onClick={() => setLightbox(false)}
+        >
+          <button
+            type="button"
+            className="lightbox__close"
+            aria-label="Close fullscreen view"
+            onClick={() => setLightbox(false)}
+          >
+            <Icon name="close" size={20} />
+          </button>
+          <img src={w.preview} alt={w.title} onClick={(e) => e.stopPropagation()} />
+          <p className="lightbox__cap"><BodySm>{w.title} — tap anywhere to close</BodySm></p>
+        </div>
       )}
     </div>
   )

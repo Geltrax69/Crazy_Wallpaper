@@ -13,6 +13,10 @@ const PATHS = {
   chevronDown: <path d="M6 9l6 6 6-6" />,
   plus: <><path d="M12 5v14" /><path d="M5 12h14" /></>,
   minus: <path d="M5 12h14" />,
+  home: <><path d="M4 11.5L12 4l8 7.5" /><path d="M6.5 10.5V20h11v-9.5" /></>,
+  grid: <><rect x="4" y="4" width="7" height="7" rx="1" /><rect x="13" y="4" width="7" height="7" rx="1" /><rect x="4" y="13" width="7" height="7" rx="1" /><rect x="13" y="13" width="7" height="7" rx="1" /></>,
+  sun: <><circle cx="12" cy="12" r="4.5" /><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M18.7 5.3l-1.8 1.8M7.1 16.9l-1.8 1.8" /></>,
+  moon: <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" />,
 }
 
 export default function Icon({ name, size = 20, strokeWidth = 1.5, className, filled = false, ...rest }) {

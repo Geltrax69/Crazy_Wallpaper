@@ -5,6 +5,7 @@ import { getCollection } from '../../data/collections/collections'
 import { BodySm, Caption } from '../typography/Type'
 import Price from '../ui/Price'
 import Icon from '../ui/Icon'
+import SmartImage from '../ui/SmartImage'
 import { cx } from '../../lib/utils/format'
 import './product-card.css'
 
@@ -20,7 +21,7 @@ export default function ProductCard({ wallpaper: w, ratio = '4/3', className }) 
     <article className={cx('p-card', className)}>
       <div className="p-card__media" style={{ '--card-ratio': ratio }}>
         <Link to={`/wallpaper/${w.slug}`} data-cursor="View" aria-label={`View ${w.title}`}>
-          <img src={w.thumbnail} alt={w.title} loading="lazy" />
+          <SmartImage src={w.thumbnail} alt={w.title} />
         </Link>
         <div className="p-card__veil" aria-hidden="true" />
         <button

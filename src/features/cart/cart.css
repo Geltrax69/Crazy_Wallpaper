@@ -45,4 +45,21 @@
   .cart-page__line { grid-template-columns: 120px 1fr; }
   .cart-page__line > :last-child { grid-column: 2; }
   .cart-summary { position: static; }
+  .cart-suggest__grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-md); }
+}
+
+/* empty cart */
+.cart-empty {
+  text-align: center;
+  display: grid;
+  gap: var(--space-md);
+  justify-items: center;
+  padding: var(--space-2xl) 0;
+}
+.cart-empty__title { font-size: var(--text-h2); letter-spacing: -0.01em; }
+.cart-suggest { padding-bottom: var(--space-section); }
+.cart-suggest__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
 }

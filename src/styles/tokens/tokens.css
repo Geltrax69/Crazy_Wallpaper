@@ -10,10 +10,11 @@
   --ink: #1b1814;          /* near-black, warm */
   --ink-soft: #35312a;     /* charcoal */
   --muted: #6f6a61;        /* soft grey */
-  --faint: #aaa49b;
+  --faint: #76716a;        /* faintest grey that still passes AA on white */
 
   --line: #e9e6de;
   --line-soft: #f1efe9;
+  --line-dark: #d5d0c4;
 
   /* restrained accents, drawn from artwork */
   --accent-red: #b0552f;
@@ -60,4 +61,31 @@
 
   /* ---------- header ---------- */
   --header-h: 72px;
+
+  /* ---------- mobile tab bar ---------- */
+  --tabbar-h: 60px;
+}
+
+/* ---------- dark theme ---------- */
+[data-theme="dark"] {
+  --bg: #161310;
+  --bg-warm: #1c1815;
+  --bg-cool: #1a1714;
+  --surface: #1e1a16;
+
+  --ink: #f0e9dc;
+  --ink-soft: #d8d0c1;
+  --muted: #a89e90;
+  --faint: #847c70;
+
+  --line: #2e2924;
+  --line-soft: #241f1a;
+  --line-dark: #3d362e;
+
+  --accent-red: #cf7f4e;
+  --accent-blue: #93a3bb;
+  --accent-yellow: #d8c48a;
+  --accent-green: #9aa88d;
+  --accent-orange: #cf7f4e;
+  --accent-lavender: #a89ec7;
 }

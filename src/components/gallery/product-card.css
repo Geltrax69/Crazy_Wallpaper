@@ -11,9 +11,10 @@
   height: 100%;
   object-fit: cover;
   aspect-ratio: var(--card-ratio, 4/3);
-  transition: transform var(--dur-slow) var(--ease);
+  transition: transform var(--dur-slow) var(--ease), opacity var(--dur-normal) var(--ease);
   outline: none;
 }
+.p-card__media > a { display: block; }
 .p-card:hover .p-card__media img { transform: scale(1.045); }
 .p-card__veil {
   position: absolute; inset: 0;
@@ -75,13 +76,17 @@
   gap: var(--space-md);
   padding-top: var(--space-md);
 }
-.p-card__title { font-size: 1.25rem; line-height: 1.25; }
+.p-card__title { font-size: 1.375rem; line-height: 1.25; }
 .p-card__title a:hover { font-style: italic; }
 .p-card__sub { color: var(--muted); margin-top: 0.2rem; }
-.p-card__price { white-space: nowrap; }
+.p-card__price { white-space: nowrap; font-size: 1.0625rem; }
 
 @media (hover: none) {
   .p-card__fav { opacity: 1; transform: none; }
   .p-card__add { position: static; opacity: 1; transform: none; margin-top: var(--space-sm); border: 1px solid var(--line); }
   .p-card__view, .p-card__veil { display: none; }
+  /* touch feedback in place of hover */
+  .p-card__media { transition: transform var(--dur-fast) var(--ease); }
+  .p-card:active .p-card__media { transform: scale(0.985); }
+  .p-card__add:active { background: var(--ink); color: var(--bg); }
 }

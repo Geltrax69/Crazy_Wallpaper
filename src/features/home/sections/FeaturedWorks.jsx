@@ -14,7 +14,9 @@ export default function FeaturedWorks() {
         <Reveal>
           <div className="sec-head">
             <H2 as="h2">Selected <em className="t-italic">works</em></H2>
-            <Link to="/shop" className="u-link t-meta">View the archive</Link>
+            <Link to="/shop" className="sec-link">
+              View the archive <Icon name="arrowRight" size={16} />
+            </Link>
           </div>
         </Reveal>
         <div className="featured-grid">
