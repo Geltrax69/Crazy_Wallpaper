@@ -1,0 +1,76 @@
+/* Semantic type scale. Choose semantics first, size follows. */
+
+.t-display {
+  font-family: var(--font-serif);
+  font-size: var(--text-display);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  text-wrap: balance;
+}
+
+.t-h1 {
+  font-family: var(--font-serif);
+  font-size: var(--text-h1);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  font-weight: 400;
+  text-wrap: balance;
+}
+
+.t-h2 {
+  font-family: var(--font-serif);
+  font-size: var(--text-h2);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  font-weight: 400;
+  text-wrap: balance;
+}
+
+.t-h3 {
+  font-family: var(--font-serif);
+  font-size: var(--text-h3);
+  line-height: 1.2;
+  font-weight: 400;
+  text-wrap: balance;
+}
+
+.t-lead {
+  font-family: var(--font-serif);
+  font-size: var(--text-lead);
+  line-height: 1.5;
+  font-weight: 400;
+  text-wrap: pretty;
+}
+
+.t-body {
+  font-family: var(--font-serif);
+  font-size: var(--text-body);
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+.t-body-sm {
+  font-family: var(--font-serif);
+  font-size: var(--text-body-sm);
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+.t-caption {
+  font-family: var(--font-serif);
+  font-size: var(--text-caption);
+  line-height: 1.5;
+}
+
+.t-meta {
+  font-family: var(--font-serif);
+  font-size: var(--text-meta);
+  line-height: 1.4;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.t-italic { font-style: italic; }
+.t-tabular { font-variant-numeric: tabular-nums; }

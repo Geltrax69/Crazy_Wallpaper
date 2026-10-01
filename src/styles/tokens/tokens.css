@@ -1,0 +1,63 @@
+/* Design tokens — single source of truth. Do not introduce ad-hoc values. */
+
+:root {
+  /* ---------- color ---------- */
+  --bg: #ffffff;
+  --bg-warm: #faf9f6;
+  --bg-cool: #f6f7f6;
+  --surface: #ffffff;
+
+  --ink: #1b1814;          /* near-black, warm */
+  --ink-soft: #35312a;     /* charcoal */
+  --muted: #6f6a61;        /* soft grey */
+  --faint: #aaa49b;
+
+  --line: #e9e6de;
+  --line-soft: #f1efe9;
+
+  /* restrained accents, drawn from artwork */
+  --accent-red: #b0552f;
+  --accent-blue: #7d8ca3;
+  --accent-yellow: #d8c48a;
+  --accent-green: #8a9b7e;
+  --accent-orange: #c97e4b;
+  --accent-lavender: #a49ac2;
+
+  /* ---------- typography ---------- */
+  --font-serif: 'Junicode', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+
+  --text-display: clamp(3.5rem, 11vw, 10.5rem);
+  --text-h1: clamp(2.75rem, 6vw, 5.25rem);
+  --text-h2: clamp(2rem, 4vw, 3.25rem);
+  --text-h3: 1.5rem;
+  --text-lead: 1.25rem;
+  --text-body: 1rem;
+  --text-body-sm: 0.875rem;
+  --text-caption: 0.75rem;
+  --text-meta: 0.6875rem;
+
+  /* ---------- spacing ---------- */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.75rem;
+  --space-xl: 2.75rem;
+  --space-2xl: 4.5rem;
+  --space-section: clamp(4.5rem, 10vw, 9rem);
+
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --maxw: 1600px;
+
+  /* ---------- motion ---------- */
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --dur-fast: 150ms;
+  --dur-normal: 320ms;
+  --dur-slow: 640ms;
+
+  /* ---------- radius (restrained) ---------- */
+  --r-sm: 2px;
+  --r-md: 6px;
+
+  /* ---------- header ---------- */
+  --header-h: 72px;
+}

@@ -1,0 +1,40 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-serif);
+  font-size: var(--text-body);
+  line-height: 1;
+  padding: 1rem 1.75rem;
+  border: 1px solid var(--ink);
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease),
+    transform var(--dur-fast) var(--ease);
+  white-space: nowrap;
+}
+.btn:hover { background: var(--ink); color: var(--bg); }
+.btn:active { transform: scale(0.96); }
+
+.btn--primary { background: var(--ink); color: var(--bg); }
+.btn--primary:hover { background: var(--ink-soft); border-color: var(--ink-soft); }
+
+.btn--ghost { border-color: var(--line); }
+.btn--ghost:hover { border-color: var(--ink); background: transparent; color: var(--ink); }
+
+.btn--sm { padding: 0.625rem 1.125rem; font-size: var(--text-body-sm); }
+.btn--lg { padding: 1.25rem 2.5rem; font-size: var(--text-lead); }
+
+.btn--quiet {
+  border: none;
+  padding: 0.5rem 0;
+  gap: var(--space-xs);
+}
+.btn--quiet:hover { background: transparent; color: var(--ink); }
+.btn--quiet .btn-arrow { transition: transform var(--dur-fast) var(--ease); }
+.btn--quiet:hover .btn-arrow { transform: translateX(4px); }
+
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.btn:disabled:hover { background: var(--ink); color: var(--bg); }

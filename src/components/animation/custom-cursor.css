@@ -1,0 +1,20 @@
+.cursor-label {
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 200;
+  pointer-events: none;
+  font-family: var(--font-serif);
+  font-size: var(--text-meta);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: var(--ink);
+  color: var(--bg);
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  opacity: 0;
+  scale: 0.7;
+  transition: opacity var(--dur-fast) var(--ease), scale var(--dur-fast) var(--ease);
+  white-space: nowrap;
+}
+.cursor-label.is-visible { opacity: 1; scale: 1; }
+@media (pointer: coarse) { .cursor-label { display: none; } }

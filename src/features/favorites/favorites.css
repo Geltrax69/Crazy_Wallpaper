@@ -1,0 +1,12 @@
+.favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-xl) var(--space-lg);
+  align-items: start;
+  margin-bottom: var(--space-section);
+}
+.favorites-grid > *:nth-child(odd) { grid-column: span 5; }
+.favorites-grid > *:nth-child(even) { grid-column: span 7; }
+@media (max-width: 900px) {
+  .favorites-grid > * { grid-column: 1 / -1 !important; }
+}

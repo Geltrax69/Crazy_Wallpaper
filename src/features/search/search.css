@@ -1,0 +1,46 @@
+.search-head { padding-top: var(--space-2xl); margin-bottom: var(--space-xl); }
+.search-field {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: var(--space-md);
+  color: var(--muted);
+}
+.search-field input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  outline: none;
+  min-width: 0;
+}
+.search-field input::placeholder { color: var(--faint); font-style: italic; }
+.search-field input[type="search"]::-webkit-search-cancel-button { cursor: pointer; }
+
+.search-suggest { margin-bottom: var(--space-section); }
+.search-suggest__pills { display: flex; gap: var(--space-sm); flex-wrap: wrap; margin-top: var(--space-md); }
+.search-popular {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+}
+.search-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-xl) var(--space-lg);
+  align-items: start;
+  margin-bottom: var(--space-section);
+}
+.search-grid > *:nth-child(4n+1) { grid-column: span 5; }
+.search-grid > *:nth-child(4n+2) { grid-column: span 7; }
+.search-grid > *:nth-child(4n+3) { grid-column: span 7; }
+.search-grid > *:nth-child(4n+4) { grid-column: span 5; }
+
+@media (max-width: 900px) {
+  .search-popular { grid-template-columns: 1fr 1fr; }
+  .search-grid > * { grid-column: 1 / -1 !important; }
+}
