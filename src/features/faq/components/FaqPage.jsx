@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useDocumentMeta } from '../../../app/routes/useDocumentMeta'
 import { H1, Body, BodySm, Meta } from '../../../components/typography/Type'
 import Reveal from '../../../components/animation/Reveal'
@@ -41,7 +42,7 @@ export default function FaqPage() {
 
       <Reveal>
         <div className="empty-state">
-          <Body>Still curious? <a href="/contact" className="u-link">Ask us anything</a>.</Body>
+          <Body>Still curious? <Link to="/contact" className="u-link">Ask us anything</Link>.</Body>
         </div>
       </Reveal>
     </div>

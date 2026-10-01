@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useDocumentMeta } from '../../../app/routes/useDocumentMeta'
 import { H1, H2, Body, BodySm, Meta, Caption } from '../../../components/typography/Type'
 import Reveal from '../../../components/animation/Reveal'
@@ -71,9 +72,9 @@ export default function LicensePage() {
             For broadcast, large-scale commercial campaigns or extended rights, write to us —
             we offer extended licenses for individual pieces and the full archive.
           </Body>
-          <a href="/contact" className="u-link t-meta" style={{ display: 'inline-block', marginTop: 'var(--space-lg)' }}>
+          <Link to="/contact" className="u-link t-meta" style={{ display: 'inline-block', marginTop: 'var(--space-lg)' }}>
             Contact the studio →
-          </a>
+          </Link>
         </div>
       </Reveal>
     </div>
