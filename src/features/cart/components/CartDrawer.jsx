@@ -6,6 +6,7 @@ import Button from '../../../components/ui/Button'
 import Price from '../../../components/ui/Price'
 import Icon from '../../../components/ui/Icon'
 import './cart-drawer.css'
+import '../cart.css'
 
 export default function CartDrawer() {
   const { cart, cartOpen, setCartOpen, removeFromCart, subtotal } = useStore()
@@ -61,8 +62,12 @@ export default function CartDrawer() {
                   <div className="cart-line__info">
                     <BodySm><strong>{w.title}</strong></BodySm>
                     <Caption style={{ color: 'var(--muted)' }}>{w.collection} · Digital download</Caption>
-                    <button className="cart-line__remove" onClick={() => removeFromCart(w.id)}>
-                      Remove
+                    <button
+                      className="cart-remove cart-remove--sm"
+                      onClick={() => removeFromCart(w.id)}
+                      aria-label={`Remove ${w.title} from cart`}
+                    >
+                      <Icon name="close" size={13} /> Remove
                     </button>
                   </div>
                   <Price value={w.price} />

@@ -68,8 +68,12 @@ export default function CartPage() {
                     <Caption style={{ color: 'var(--muted)', marginTop: '0.25rem' }}>
                       Digital download · All resolutions included
                     </Caption>
-                    <button className="cart-line__remove" style={{ marginTop: '0.75rem' }} onClick={() => removeFromCart(w.id)}>
-                      Remove
+                    <button
+                      className="cart-remove"
+                      onClick={() => removeFromCart(w.id)}
+                      aria-label={`Remove ${w.title} from cart`}
+                    >
+                      <Icon name="close" size={14} /> Remove
                     </button>
                   </div>
                   <Price value={w.price} large />
