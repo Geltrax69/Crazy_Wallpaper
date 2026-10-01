@@ -55,8 +55,8 @@ export const WALLPAPERS = [
   make({ id: 'w24', slug: 'fog-line', title: 'Fog Line', description: 'Where the dune dissolves into white. Photographed at the edge of visibility.', price: 28, category: 'nature', collection: 'photographic', tags: ['fog', 'minimal', 'landscape'], image: photographicArt, popularity: 70, colors: ['#f6f4ee', '#e9e2d4'], createdAt: '2026-06-21' }),
 ]
 
-export function getWallpaper(slug) {
-  return WALLPAPERS.find((w) => w.slug === slug)
+export function getWallpaper(idOrSlug) {
+  return WALLPAPERS.find((w) => w.slug === idOrSlug || w.id === idOrSlug)
 }
 
 export function searchWallpapers(query) {
