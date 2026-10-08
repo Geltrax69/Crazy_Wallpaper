@@ -13,6 +13,15 @@
 ![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES2022-F7DF1E?logo=javascript&logoColor=black)
 
+## Screenshots
+
+<p align="center">
+  <img src="./screenshot-ui.png" alt="Papier wallpaper store" width="100%" />
+  <br />
+  <em>Homepage — art-directed wallpaper store.</em>
+</p>
+
+
 > Repository: `Geltrax69/Crazy_Wallpaper` · Live brand: **Papier**
 
 ## What it is
